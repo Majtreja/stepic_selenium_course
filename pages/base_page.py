@@ -14,6 +14,13 @@ class BasePage(object):
             return False
         return True
 
+    def is_link_present(self):
+        try:
+            self.browser.current_url()
+        except NoSuchElementException:
+            return False
+        return True
+
     def __init__(self, browser, url, timeout=10):
         self.browser: WebDriver = browser
         self.url = url
