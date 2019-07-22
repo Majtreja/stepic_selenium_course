@@ -13,3 +13,5 @@ class LoginPageLocators(object):
 
 class ProductPageLocators(object):
     ADD_BUTTON = (By.CSS_SELECTOR, ".btn-lg.btn-primary.btn-add-to-basket")
+    PROD_IN_CART = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
+    PRICE_IN_CART = (By.CSS_SELECTOR, "#messages > div:nth-child(3) >div > p > strong")

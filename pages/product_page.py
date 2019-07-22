@@ -18,11 +18,11 @@ class ProductPage(BasePage):
         add_btn.click()
 
     def write_product_added(self):
-        text = self.browser.find_element_by_css_selector('#messages > div:nth-child(1) > div > strong').text
+        text = self.browser.find_element(*ProductPageLocators.PROD_IN_CART).text
         text_example = "The shellcoder's handbook"
         assert text == text_example
 
     def price_true(self):
-        price_msg = self.browser.find_element_by_css_selector('#messages > div:nth-child(3) >div > p > strong').text
+        price_msg = self.browser.find_element(*ProductPageLocators.PRICE_IN_CART).text
         price_example = "£9.99"
         assert price_msg == price_example
