@@ -17,3 +17,4 @@ class ProductPageLocators(object):
     PRODUCT_PRICE = (By.CSS_SELECTOR, "#content_inner > article > div.row > div.col-sm-6.product_main > p.price_color")
     PROD_IN_CART = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     PRICE_IN_CART = (By.CSS_SELECTOR, "#messages > div:nth-child(3) >div > p > strong")
+    SUCCESS_MESSAGE = ('Test')
