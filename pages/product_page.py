@@ -27,11 +27,11 @@ class ProductPage(BasePage):
 
     def write_product_added(self):
         text = self.browser.find_element(*ProductPageLocators.PROD_IN_CART).text
-        assert text == self.return_product_name()
+        assert text == self.return_product_name(), "Wrong product name"
 
     def price_true(self):
         price_msg = self.browser.find_element(*ProductPageLocators.PRICE_IN_CART).text
-        assert price_msg == self.return_product_price()
+        assert price_msg == self.return_product_price(), "Wrong product price"
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
