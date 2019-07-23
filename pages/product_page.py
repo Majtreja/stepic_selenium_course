@@ -6,7 +6,7 @@ class ProductPage(BasePage):
     def product_added(self):
         self.should_be_add_btn()
         self.add_to_cart()
-        self.solve_quiz_and_get_code()
+        # self.solve_quiz_and_get_code()
         self.write_product_added()
         self.price_true()
 

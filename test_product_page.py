@@ -89,7 +89,7 @@ class TestUserAddToCartFromProductPage(object):
         page.open()
         page.should_not_be_success_message()
 
-    # Will fail wile trying to enter code
+    # Will fail wile trying to enter code if using link with promo
     def test_user_can_add_product_to_cart(self, browser):
         page = ProductPage(browser, link)
         page.open()

@@ -63,7 +63,7 @@ class BasePage(object):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                  " probably unauthorised user"
 
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url, timeout=5):
         self.browser: WebDriver = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
