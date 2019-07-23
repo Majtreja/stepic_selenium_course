@@ -1,11 +1,14 @@
 from .pages.product_page import ProductPage
 from .pages.cart_page import CartPage
+from .pages.login_page import LoginPage
 import pytest
+import faker
 
 
 # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
 # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
+
 
 #
 # @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -20,6 +23,12 @@ link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook
 #                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
 
 
+def test_guest_cant_see_success_message(browser):
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+
 # Will fail wile trying to enter code
 def test_guest_can_add_product_to_cart(browser):
     page = ProductPage(browser, link)
@@ -32,12 +41,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
     page = ProductPage(browser, link)
     page.open()
     page.add_to_cart()
-    page.should_not_be_success_message()
-
-
-def test_guest_cant_see_success_message(browser):
-    page = ProductPage(browser, link)
-    page.open()
     page.should_not_be_success_message()
 
 
@@ -67,3 +70,27 @@ def test_guest_cant_see_product_in_cart_opened_from_product_page(browser):
     page.go_to_cart()
     page.should_be_cart_empty()
     page.should_be_text_cart_empty()
+
+
+@pytest.mark.logged_user
+class TestUserAddToCartFromProductPage(object):
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/accounts/login/"
+        email = faker.Faker().email()
+        password = "qwaszxerdfcv"
+        page = LoginPage(browser, link)
+        page.open()
+        page.register_new_user(email, password)
+        page.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    # Will fail wile trying to enter code
+    def test_user_can_add_product_to_cart(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.product_added()
