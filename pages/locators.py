@@ -23,3 +23,9 @@ class ProductPageLocators(object):
 class BasePageLocators(object):
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    CART_LINK = (By.CSS_SELECTOR, "div.basket-mini span a.btn")
+
+
+class CartPageLocators(object):
+    TEXT_CART_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
+    PRODUCT_IN_CART = (By.CSS_SELECTOR, "div.basket-title.hidden-xs")
