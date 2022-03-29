@@ -15,7 +15,7 @@ incremental==16.10.1
 ipaddress==1.0.22
 lxml==4.2.1
 mysql-connector-python==2.1.6
-paramiko==2.0.0
+paramiko==2.10.1
 Parsley==1.2
 pexpect==4.2.1
 pluggy==0.6.0
